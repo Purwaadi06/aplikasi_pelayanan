@@ -25,7 +25,7 @@ class PendudukController extends Controller
     {
         $request->validate([
             'FNIK' => 'required|unique:tb_penduduk,FNIK',
-            'FNO_KTP' => 'required',
+            'FNO_KK' => 'required',
             'FNAMA' => 'required',
             'FTMP_LAHIR' => 'required',
             'FTGL_LAHIR' => 'required|date',
@@ -58,7 +58,7 @@ class PendudukController extends Controller
 {
     $request->validate([
         'FNIK' => 'required|unique:tb_penduduk,FNIK,' . $FNIK . ',FNIK',
-        'FNO_KTP' => 'required',
+        'FNO_KK' => 'required',
         'FNAMA' => 'required',
         'FTMP_LAHIR' => 'required',
         'FTGL_LAHIR' => 'required|date',

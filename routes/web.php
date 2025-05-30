@@ -57,6 +57,7 @@ Route::resource('surat_keterangan', SuratKeteranganController::class);
 Route::get('surat_keterangan/cetak/{id}', [SuratKeteranganController::class, 'cetak'])->name('surat_keterangan.cetak');
 
 // Surat Permintaan
+Route::get('/surat_permintaan', [SuratPermintaanController::class, 'index'])->name('surat_permintaan.index');
 Route::resource('surat_permintaan', SuratPermintaanController::class);
 
 // Surat Selesai

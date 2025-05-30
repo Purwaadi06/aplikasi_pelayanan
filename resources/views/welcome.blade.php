@@ -15,7 +15,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
 
-    <body class="bg-[url('{{ asset("assets/hero_cikundul.png") }}')] bg-cover bg-center bg-no-repeat min-h-screen">
+    <body class="bg-[url('{{ asset("assets/hero_cikundul.jpg") }}')] bg-cover bg-center bg-no-repeat min-h-screen">
 
         <!-- Navbar -->
         <nav

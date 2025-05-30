@@ -11,7 +11,7 @@
                     @php
                         $fields = [
                             'FNIK' => 'NIK',
-                            'FNO_KTP' => 'No. KTP',
+                            'FNO_KK' => 'No.KK',
                             'FNAMA' => 'Nama Lengkap',
                             'FTMP_LAHIR' => 'Tempat Lahir',
                             'FTGL_LAHIR' => 'Tanggal Lahir',

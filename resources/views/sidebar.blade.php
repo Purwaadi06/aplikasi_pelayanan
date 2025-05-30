@@ -109,10 +109,10 @@
 
     <!-- Submenu -->
     <div x-show="isSuratOpen && open" x-cloak class="ml-8 mt-1 space-y-1 transition-all duration-200">
-        <a href="/surat_keterangan/permintaan" class="flex items-center px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-sm">
+        <a href="/surat_permintaan" class="flex items-center px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-sm">
             <span class="ml-1">Surat Permintaan</span>
         </a>
-        <a href="/surat_keterangan/selesai" class="flex items-center px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-sm">
+        <a href="/surat_keterangan" class="flex items-center px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-sm">
             <span class="ml-1">Surat Selesai</span>
         </a>
     </div>

@@ -14,4 +14,8 @@ class SuratPermintaan extends Model
     {
         return $this->hasOne(SuratSelesai::class, 'surat_permintaan_id');
     }
+    public function penduduk()
+    {
+    return $this->belongsTo(Penduduk::class, 'nik', 'FNIK');
+    }
 }

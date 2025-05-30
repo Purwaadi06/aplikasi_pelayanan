@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('surat_permintaan', function (Blueprint $table) {
-            $table->id();
-            $table->string('nik');
-            $table->string('jenis_surat');
-            $table->text('keperluan');
-            $table->enum('status', ['diproses', 'selesai'])->default('diproses');
-            $table->timestamps();
-        });
+    Schema::create('surat_permintaan', function (Blueprint $table) {
+        $table->id();
+        $table->string('nik');
+        $table->string('jenis_surat');
+        $table->text('keperluan');
+        $table->enum('status', ['diproses', 'selesai'])->default('diproses');
+        $table->timestamps();
+        // Foreign key constraint
+        $table->foreign('nik')->references('FNIK')->on('tb_penduduk')->onDelete('cascade');
+    });
     }
+
 
     /**
      * Reverse the migrations.

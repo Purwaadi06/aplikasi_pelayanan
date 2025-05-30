@@ -23,8 +23,13 @@ class Penduduk extends Model
 
     // Tentukan atribut yang bisa diisi
     protected $fillable = [
-        'FNIK', 'FNO_KTP', 'FNAMA', 'FTMP_LAHIR', 'FTGL_LAHIR', 'FKEL', 
+        'FNIK', 'FNO_KK
+        ', 'FNAMA', 'FTMP_LAHIR', 'FTGL_LAHIR', 'FKEL', 
         'FAGAMA', 'FALAMAT', 'FPENDIDIKAN', 'FPEKERJAAN', 'FSTATUS', 
         'FSTATUS_KEL', 'FKEWARGANEGARAAN', 'FNAMA_AYAH', 'FNAMA_IBU'
     ];
+    public function suratPermintaan()
+    {
+    return $this->hasMany(SuratPermintaan::class, 'nik', 'FNIK');
+    }
 }

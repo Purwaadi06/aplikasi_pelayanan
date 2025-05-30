@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_penduduk', function (Blueprint $table) {
             $table->string('FNIK')->primary();
-            $table->string('FNO_KTP');
+            $table->string('FNO_KK');
             $table->string('FNAMA');
             $table->string('FTMP_LAHIR');
             $table->date('FTGL_LAHIR');

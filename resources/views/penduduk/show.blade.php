@@ -12,7 +12,7 @@
                 <div class="mt-4">
                     <p><strong>NIK:</strong> {{ $penduduk->FNIK }}</p>
                     <p><strong>Nama:</strong> {{ $penduduk->FNAMA }}</p>
-                    <p><strong>No. KTP:</strong> {{ $penduduk->FNO_KTP }}</p>
+                    <p><strong>No. KK:</strong> {{ $penduduk->FNO_KK }}</p>
                     <p><strong>Tempat Lahir:</strong> {{ $penduduk->FTMP_LAHIR }}</p>
                     <p><strong>Tanggal Lahir:</strong> {{ $penduduk->FTGL_LAHIR }}</p>
                     <p><strong>Jenis Kelamin:</strong> {{ $penduduk->FKEL }}</p>

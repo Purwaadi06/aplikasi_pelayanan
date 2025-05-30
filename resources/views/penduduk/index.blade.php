@@ -24,7 +24,7 @@
                                 <thead class="bg-gray-200 dark:bg-gray-700 text-left">
                                     <tr> 
                                         <th class="border px-4 py-2">NIK</th>
-                                        <th class="border px-4 py-2">No. KTP</th>
+                                        <th class="border px-4 py-2">No. KK</th>
                                         <th class="border px-4 py-2">Nama</th>
                                         <th class="border px-4 py-2">TTL</th>
                                         <th class="border px-4 py-2">Jenis Kelamin</th>
@@ -44,7 +44,7 @@
                                     @forelse ($penduduks as $p)
                                         <tr>
                                             <td class="border px-4 py-2">{{ $p->FNIK }}</td>
-                                            <td class="border px-4 py-2">{{ $p->FNO_KTP }}</td>
+                                            <td class="border px-4 py-2">{{ $p->FNO_KK }}</td>
                                             <td class="border px-4 py-2">{{ $p->FNAMA }}</td>
                                             <td class="border px-4 py-2">
                                                 {{ $p->FTMP_LAHIR }},
