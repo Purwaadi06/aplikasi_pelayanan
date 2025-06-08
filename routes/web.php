@@ -6,6 +6,7 @@ use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\SuratKeteranganController;
 use App\Http\Controllers\SuratPermintaanController;
 use App\Http\Controllers\SuratSelesaiController;
+use App\Http\Controllers\UserDashboardController;
 use App\Http\Middleware\RoleMiddleware;
 
 /*
@@ -29,10 +30,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified', 'role:admin'])->name('dashboard');
 
 // Rute untuk User (user dashboard)
-Route::get('/user-dashboard', function () {
-    return view('user-dashboard');  // Halaman khusus untuk User
-})->middleware(['auth', 'verified', 'role:user'])->name('user.dashboard');
-
+Route::get('/user-dashboard', [UserDashboardController::class, 'index'])
+    ->middleware(['auth', 'verified', 'role:user'])
+    ->name('user.dashboard');
 // Rute Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
