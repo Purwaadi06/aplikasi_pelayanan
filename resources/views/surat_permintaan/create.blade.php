@@ -1,10 +1,11 @@
 @extends('sidebar')
+@extends('sidebar-admin')
 
 @section('content')
 @include('topbar', ['title' => 'Buat Surat Permintaan'])
 
 <div class="py-6">
-    <div class="mx-auto">
+    <div class="mx-auto max-w-4xl">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
 
@@ -56,7 +57,7 @@
                     </div>
 
                     <div class="flex justify-end gap-4">
-                        <a href="{{ route('surat_permintaan.index') }}"
+                        <a href="/user-dashboard"
                            class="bg-gray-600 hover:bg-gray-700 text-white font-semibold px-4 py-2 rounded">
                             Batal
                         </a>
