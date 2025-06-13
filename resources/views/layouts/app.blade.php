@@ -75,9 +75,9 @@
 
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/lib/audioplayer.css" />
     <!-- main css -->
-    <link rel="stylesheet" href="{{ asset('template') }}/assets/css/style.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('template') }}/assets/css/style.css" />
+
 </head>
 
 <body class="bg-neutral-100 dark:bg-neutral-800 dark:text-white"></body>

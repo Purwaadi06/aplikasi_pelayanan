@@ -14,11 +14,13 @@
                         <h5>Tambah Data RT</h5>
                         </a>
 
-                        <form action="">
+                        <form action="{{ route('rt.store') }}" method="post">
+                            @csrf
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="form-label block mb-1">RT</label>
-                                    <input type="text" class="form-control w-full" placeholder="Contoh : RT 001">
+                                    <input type="text" class="form-control w-full" placeholder="Contoh : RT 001"
+                                        name="nama_rt">
                                 </div>
                                 <div>
                                     <label class="form-label block mb-1">RW</label>
@@ -35,6 +37,10 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="col-span-12">
+
+                                <button type="submit" class="btn btn-primary-600 mt-5">Simpan</button>
+                            </div>
                         </form>
                     </div>
 
@@ -43,14 +49,4 @@
         </div>
 
     </div>
-@endsection
-
-@section('js')
-    <script>
-        if (typeof simpleDatatables.DataTable !== 'undefined') {
-            let table = null
-            table = new simpleDatatables.DataTable("#table-surat", options);
-
-        }
-    </script>
 @endsection

@@ -10,39 +10,33 @@
 
 
                     <div class="p-6 rounded shadow">
-                        <a href="{{ route('penduduk.create') }}"
+                        <a href="{{ route('rt.create') }}"
                             class=" bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-1 rounded transition duration-300 flex items-center gap-2 w-[155px]">
                             <iconify-icon icon="fa6-solid:plus" class="icon"></iconify-icon>
                             <span>Tambah Data</span>
                         </a>
 
-                        <h2 class="text-xl font-semibold mb-4 mt-10 text-gray-700">Data Penduduk</h2>
+                        <h2 class="text-xl font-semibold mb-4 mt-10 text-gray-700">Data RT</h2>
                         <table class="table-auto w-full border border-gray-300 text-sm" id="table-surat">
                             <thead class="bg-gray-200 text-left">
                                 <tr>
                                     <th class="border px-4 py-2">No</th>
-                                    <th class="border px-4 py-2">NIK</th>
-                                    <th class="border px-4 py-2">Nama</th>
-                                    <th class="border px-4 py-2">RT / RW</th>
+                                    <th class="border px-4 py-2">RT</th>
+                                    <th class="border px-4 py-2">RW</th>
                                     <th class="border px-4 py-2">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    // Filter data surat hanya milik user yang login
-                                    $userSurat = $penduduks;
-                                @endphp
 
-                                @foreach ($userSurat as $index => $item)
+                                @foreach ($rt as $item)
                                     <tr>
-                                        <td class="border px-4 py-2">{{ $index + 1 }}</td>
-                                        <td class="border px-4 py-2">{{ $item->nik }}</td>
-                                        <td class="border px-4 py-2">{{ $item->nama ?? '' }}</td>
-                                        <td class="border px-4 py-2 capitalize">{{ $item->rt->nama_rt ?? '' }} /
-                                            {{ $item->rt->rw->nama_rw ?? '' }}</td>
+                                        <td class="border px-4 py-2">{{ $loop->iteration }}</td>
+                                        <td class="border px-4 py-2">{{ $item->nama_rt }}</td>
+                                        <td class="border px-4 py-2">{{ $item->rw->nama_rw }}</td>
+
 
                                         <td class="border px-4 py-2">
-                                            <a href="{{ route('penduduk.edit', $item->id) }}"
+                                            <a href="{{ route('rt.edit', $item->id) }}"
                                                 class="w-8 h-8 bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 rounded-full inline-flex items-center justify-center">
                                                 <iconify-icon icon="lucide:edit"></iconify-icon>
                                             </a>
@@ -80,8 +74,8 @@
                                                     </svg>
                                                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                                                         Apakah anda yakin ingin menghapus data ini?</h3>
-                                                    <form action="{{ route('penduduk.destroy', $item->id) }}"
-                                                        method="POST" class="inline-block">
+                                                    <form action="{{ route('rt.destroy', $item->id) }}" method="POST"
+                                                        class="inline-block">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"

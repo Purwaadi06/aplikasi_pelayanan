@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SuratSelesai extends Model
 {
-    protected $table = 'surat_selesai';
-    protected $fillable = ['surat_permintaan_id', 'tanggal_selesai', 'file_surat'];
+    protected $table = 'tb_surat_selesai';
+    // protected $fillable = ['surat_permintaan_id', 'tanggal_selesai', 'file_surat'];
 
-    public function permintaan()
-    {
-        return $this->belongsTo(SuratPermintaan::class, 'surat_permintaan_id');
-    }
+    // public function permintaan()
+    // {
+    //     return $this->belongsTo(SuratPermintaan::class, 'surat_permintaan_id');
+    // }
 }

@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function rw()
+    {
+        return $this->belongsTo(RW::class, 'rw_id', 'id');
+    }
 }

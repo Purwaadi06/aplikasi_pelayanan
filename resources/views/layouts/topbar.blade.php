@@ -228,10 +228,17 @@
                                 </li>
 
                                 <li>
-                                    <a class="flex items-center gap-4 px-0 py-2 text-black hover:text-danger-600"
-                                        href="javascript:void(0)">
+                                    <a href="javascript:void(0)"
+                                        class="flex items-center gap-4 px-0 py-2 text-black hover:text-danger-600"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon>
-                                        Log Out</a>
+                                        Log Out
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="hidden">
+                                        @csrf
+                                    </form>
                                 </li>
                             </ul>
                         </div>

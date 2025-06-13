@@ -17,14 +17,31 @@
                 </a>
             </li>
             @if (auth()->user()->role == 'admin')
-                <li>
-                    <a href="{{ route('penduduk.index') }}">
-                        <iconify-icon icon="fa6-solid:users-line"
-                            class="menu-icon @if ($activeMenu == 'penduduk') active-page @endif"></iconify-icon>
+                <li @class([
+                    'dropdown',
+                    'show open' => $activeMenu == 'penduduk' || $activeMenu == 'rt',
+                ])>
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="fa6-solid:users-line" class="menu-icon"></iconify-icon>
                         <span>Penduduk</span>
                     </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a href="{{ route('penduduk.index') }}"><i
+                                    class="ri-circle-fill circle-icon text-secondary-600 w-auto"></i>
+                                Data Penduduk</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('rt.index') }}"><i
+                                    class="ri-circle-fill circle-icon text-danger-600 w-auto"></i>
+                                Data RT</a>
+                        </li>
+
+                    </ul>
                 </li>
             @endif
+
             <li @class([
                 'dropdown',
                 'show open' => $activeMenu == 'permintaan' || $activeMenu == 'selesai',

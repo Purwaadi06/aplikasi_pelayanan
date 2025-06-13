@@ -37,10 +37,10 @@
 <script src="{{ asset('template') }}/assets/js/app.js"></script>
 
 <script src="{{ asset('template') }}/assets/js/homeOneChart.js"></script>
-<script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+
 
 @yield('js')
-
+@include('sweetalert::alert')
 </body>
 
 </html>

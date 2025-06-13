@@ -28,4 +28,9 @@ class Penduduk extends Model
         'rw_id',
         'rt_id'
     ];
+
+    public function rt()
+    {
+        return $this->belongsTo(RT::class, 'rt_id', 'id');
+    }
 }
