@@ -1,4 +1,4 @@
-<div x-data="{ open: true }" class="flex h-screen">
+{{-- <div x-data="{ open: true }" class="flex h-screen">
 
     <!-- Sidebar Navigation -->
     <div :class="open ? 'w-64' : 'w-20'" class="transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg h-full flex flex-col">
@@ -28,7 +28,7 @@
                     <rect width="7" height="5" x="3" y="16" rx="1"/>
                 </svg>
                 <span x-show="open" class="transition-all duration-200">Dashboard</span>
-            </a> 
+            </a>
         </nav>
     </div>
 
@@ -36,4 +36,54 @@
     <div class="flex-1 overflow-y-auto p-6">
         @yield('content')
     </div>
-</div>
+</div> --}}
+
+
+<aside class="sidebar">
+    <button type="button" class="sidebar-close-btn !mt-4">
+        <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+    </button>
+    <div>
+        <a href="index.html" class="sidebar-logo">
+            <img src="{{ asset('template') }}/assets/images/logo.png" alt="site logo" class="light-logo">
+            <img src="{{ asset('template') }}/assets/images/logo-light.png" alt="site logo" class="dark-logo">
+            <img src="{{ asset('template') }}/assets/images/logo-icon.png" alt="site logo" class="logo-icon">
+        </a>
+    </div>
+    <div class="sidebar-menu-area">
+        <ul class="sidebar-menu" id="sidebar-menu">
+            <li>
+                <a href="email.html">
+                    <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
+                    <span>Email</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-group-title">Application</li>
+            <li>
+                <a href="email.html">
+                    <iconify-icon icon="mage:email" class="menu-icon"></iconify-icon>
+                    <span>Email</span>
+                </a>
+            </li>
+            <li>
+                <a href="chat-message.html">
+                    <iconify-icon icon="bi:chat-dots" class="menu-icon"></iconify-icon>
+                    <span>Chat</span>
+                </a>
+            </li>
+            <li>
+                <a href="calendar-main.html">
+                    <iconify-icon icon="solar:calendar-outline" class="menu-icon"></iconify-icon>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a href="kanban.html">
+                    <iconify-icon icon="material-symbols:map-outline" class="menu-icon"></iconify-icon>
+                    <span>Kanban</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</aside>

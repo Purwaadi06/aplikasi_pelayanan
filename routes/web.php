@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PendudukController;
@@ -25,9 +26,7 @@ Route::get('/', function () {
 });
 
 // Rute untuk Admin (dashboard admin)
-Route::get('/dashboard', function () {
-    return view('dashboard');  // Halaman khusus untuk Admin
-})->middleware(['auth', 'verified', 'role:admin'])->name('dashboard');
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified', 'role:admin'])->name('dashboard');
 
 // Rute untuk User (user dashboard)
 Route::get('/user-dashboard', [UserDashboardController::class, 'index'])
@@ -40,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // Rute untuk Penduduk
 Route::get('/penduduk', [PendudukController::class, 'index'])->name('penduduk.index');
@@ -116,4 +115,3 @@ Route::resource('surat_selesai', SuratSelesaiController::class);
 // // Route::get('/surat_permintaan/{id}', [SuratPermintaanController::class, 'show'])->name('surat_permintaan.show');
 
 // Route::resource('surat_selesai', SuratSelesaiController::class);
- 
