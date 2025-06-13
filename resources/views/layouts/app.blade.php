@@ -42,7 +42,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wowdash - Tailwind CSS Admin Dashboard HTML Template</title>
+    <title>{{ $title }} - Sistem Pelayanan Surat Kelurahan Cikundul</title>
     <link rel="icon" type="image/png" href="{{ asset('template') }}/assets/images/favicon.png" sizes="16x16" />
     <!-- google fonts -->
     <link
@@ -76,8 +76,15 @@
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/lib/audioplayer.css" />
     <!-- main css -->
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-neutral-100 dark:bg-neutral-800 dark:text-white"></body>
 
 </html>
+
+@include('layouts.navigation')
+@include('layouts.topbar')
+@include('layouts.breadcumb')
+@include('layouts.footer')

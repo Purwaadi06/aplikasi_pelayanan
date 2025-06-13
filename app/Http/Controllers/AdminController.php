@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('dashboard', [
+        return view('admin.dashboard', [
             'totalPenduduk' => Penduduk::count(),
             'totalPermintaanSurat' => Surat::where('status', 'diproses')->count(),
             'data' => Surat::all(),

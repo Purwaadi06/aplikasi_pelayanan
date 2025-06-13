@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\SuratSelesai;
 use App\Models\SuratPermintaan;
@@ -9,14 +10,14 @@ class SuratSelesaiController extends Controller
 {
     public function index()
     {
-        $data = SuratSelesai::with('permintaan')->get();
-        return view('surat_selesai.index', compact('data'));
+        // $data = SuratSelesai::with('permintaan')->get();
+        return view('admin.surat_selesai.index');
     }
 
     public function create()
     {
         $permintaan = SuratPermintaan::where('status', 'diproses')->get();
-        return view('surat_selesai.create', compact('permintaan'));
+        return view('admin.surat_selesai.create', compact('permintaan'));
     }
 
     public function store(Request $request)
@@ -26,6 +27,6 @@ class SuratSelesaiController extends Controller
         // Update status permintaan
         $selesai->permintaan->update(['status' => 'selesai']);
 
-        return redirect()->route('surat_selesai.index');
+        return redirect()->route('admin.surat_selesai.index');
     }
 }

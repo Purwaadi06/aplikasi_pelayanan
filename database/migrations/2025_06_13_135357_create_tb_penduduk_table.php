@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tb_penduduk', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('nik', 16);
+            $table->string('nik', 16)->unique();
             $table->string('no_kk', 16);
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('tempat_lahir');

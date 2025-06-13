@@ -12,15 +12,15 @@ class SuratPermintaanController extends Controller
     // Tampilkan semua data surat permintaan
     public function index()
     {
-        $data = SuratPermintaan::with('penduduk')->get();
-        return view('surat_permintaan.index', compact('data'));
+        // $data = SuratPermintaan::with('penduduk')->get();
+        return view('admin.surat_permintaan.index');
     }
 
     // Form create
     public function create()
     {
         $penduduks = Penduduk::all(); // Ambil semua data dari tabel tb_penduduk
-        return view('surat_permintaan.create', compact('penduduks'));
+        return view('admin.surat_permintaan.create', compact('penduduks'));
     }
 
     // Simpan data baru
@@ -34,7 +34,7 @@ class SuratPermintaanController extends Controller
 
         SuratPermintaan::create($request->all());
 
-        return redirect()->route('surat_permintaan.index')->with('success', 'Surat berhasil disimpan.');
+        return redirect()->route('admin.surat_permintaan.index')->with('success', 'Surat berhasil disimpan.');
     }
 
     // Form edit
@@ -42,7 +42,7 @@ class SuratPermintaanController extends Controller
     {
         $data = SuratPermintaan::findOrFail($id);
         $penduduks = Penduduk::all();
-        return view('surat_permintaan.edit', compact('data', 'penduduks'));
+        return view('admin.surat_permintaan.edit', compact('data', 'penduduks'));
     }
 
     // API untuk ambil data penduduk berdasarkan NIK (dipakai AJAX)
@@ -58,17 +58,17 @@ class SuratPermintaanController extends Controller
     }
     public function update(Request $request, $id)
     {
-    $request->validate([
-        'nik' => 'required|exists:tb_penduduk,FNIK',
-        'jenis_surat' => 'required',
-        'keperluan' => 'required',
-        'status' => 'required|in:diproses,selesai',
-    ]);
+        $request->validate([
+            'nik' => 'required|exists:tb_penduduk,FNIK',
+            'jenis_surat' => 'required',
+            'keperluan' => 'required',
+            'status' => 'required|in:diproses,selesai',
+        ]);
 
-    $surat = SuratPermintaan::findOrFail($id);
-    $surat->update($request->all());
+        $surat = SuratPermintaan::findOrFail($id);
+        $surat->update($request->all());
 
-    return redirect()->route('surat_permintaan.index')->with('success', 'Surat berhasil diperbarui.');
+        return redirect()->route('admin.surat_permintaan.index')->with('success', 'Surat berhasil diperbarui.');
     }
     public function userDashboard()
     {

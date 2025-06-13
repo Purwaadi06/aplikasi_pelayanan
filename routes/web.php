@@ -22,16 +22,16 @@ use App\Http\Middleware\RoleMiddleware;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect()->route('login');
+})->middleware('guest')->name('index');
 
 // Rute untuk Admin (dashboard admin)
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified', 'role:admin'])->name('dashboard');
 
-// Rute untuk User (user dashboard)
-Route::get('/user-dashboard', [UserDashboardController::class, 'index'])
-    ->middleware(['auth', 'verified', 'role:user'])
-    ->name('user.dashboard');
+// // Rute untuk User (user dashboard)
+// Route::get('/user-dashboard', [UserDashboardController::class, 'index'])
+//     ->middleware(['auth', 'verified', 'role:user'])
+//     ->name('user.dashboard');
 // Rute Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
