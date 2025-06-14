@@ -13,7 +13,7 @@
 <!-- Apex Chart js -->
 <script src="{{ asset('template') }}/assets/js/lib/apexcharts.min.js"></script>
 <!-- Data Table js -->
-<script src="{{ asset('template') }}/assets/js/lib/simple-datatables.min.js"></script>
+{{-- <script src="{{ asset('template') }}/assets/js/lib/simple-datatables.min.js"></script> --}}
 <!-- Iconify Font js -->
 <script src="{{ asset('template') }}/assets/js/lib/iconify-icon.min.js"></script>
 <!-- jQuery UI js -->
@@ -33,6 +33,7 @@
 <script src="{{ asset('template') }}/assets/js/lib/audioplayer.js"></script>
 
 <script src="{{ asset('template') }}/assets/js/flowbite.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.11/js/jquery.dataTables.min.js"></script>
 <!-- main js -->
 <script src="{{ asset('template') }}/assets/js/app.js"></script>
 

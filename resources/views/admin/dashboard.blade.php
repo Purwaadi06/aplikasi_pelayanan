@@ -140,10 +140,7 @@
 
 @section('js')
     <script>
-        if (typeof simpleDatatables.DataTable !== 'undefined') {
-            let table = null
-            table = new simpleDatatables.DataTable("#table-surat", options);
-
-        }
+        let table = null
+        table = $('#table-surat').DataTable()
     </script>
 @endsection

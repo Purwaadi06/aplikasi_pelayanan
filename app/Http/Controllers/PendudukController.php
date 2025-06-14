@@ -15,9 +15,9 @@ class PendudukController extends Controller
         $penduduks = null;
         if (auth()->user()->role == 'admin') {
 
-            $penduduks = Penduduk::with('rt.rw')->get();
+            $penduduks = Penduduk::whereHas('rt.rw')->get();
         } else {
-            $penduduks = Penduduk::with('rt.rw')->where('rw_id', auth()->user()->rw_id)->get();
+            $penduduks = Penduduk::whereHas('rt.rw')->where('rw_id', auth()->user()->rw_id)->get();
         }
         return view('admin.penduduk.index', compact('penduduks'));
     }

@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        $totalPenduduk = auth()->user()->role == 'rw' ? Penduduk::where('rw_id', auth()->user()->rw_id)->count() : Penduduk::count();
+        $totalPenduduk = auth()->user()->role == 'rw' ? Penduduk::whereHas('rt.rw')->where('rw_id', auth()->user()->rw_id)->count() : Penduduk::whereHas('rt.rw')->count();
         $totalPermintaanSurat = auth()->user()->role == 'rw' ? Surat::where('status', 'diproses')->where('rw_user_id', auth()->user()->rw->id)->count() : Surat::where('status', 'diproses')->count();
         $data = auth()->user()->role == 'rw' ? Surat::where('status', 'diproses')->where('rw_user_id', auth()->user()->rw->id)->get() : Surat::where('status', 'diproses')->get();
         $totalSuratSelesai = auth()->user()->role == 'rw' ? Surat::where('status', 'disetujui')->where('rw_user_id', auth()->user()->rw->id)->count() : Surat::where('status', 'disetujui')->count();
