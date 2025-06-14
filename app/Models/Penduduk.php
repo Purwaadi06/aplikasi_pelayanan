@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\TraitsHashids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Penduduk extends Model
 {
     use HasFactory;
-
-    // Tentukan kunci primer
+    use TraitsHashids;
 
     protected $table = 'tb_penduduk';
 
@@ -23,7 +23,8 @@ class Penduduk extends Model
         'tanggal_lahir',
         'agama',
         'pekerjaan',
-        'statu_pekerjaan',
+
+        'status_perkawinan',
         'alamat',
         'rw_id',
         'rt_id'

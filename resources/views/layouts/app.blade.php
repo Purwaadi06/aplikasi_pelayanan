@@ -44,7 +44,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+    @yield('css')
 </head>
 
 <body class="bg-neutral-100 dark:bg-neutral-800 dark:text-white"></body>

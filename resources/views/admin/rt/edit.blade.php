@@ -14,7 +14,7 @@
                         <h5>Tambah Data RT</h5>
                         </a>
 
-                        <form action="{{ route('rt.update', $rt->id) }}" method="post">
+                        <form action="{{ route('rt.update', $rt->hashid) }}" method="post">
                             @csrf
                             @method('put')
                             <div class="grid grid-cols-2 gap-4">

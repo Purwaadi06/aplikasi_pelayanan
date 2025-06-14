@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RT;
+use App\Models\RW;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class PendudukController extends Controller
@@ -25,73 +28,79 @@ class PendudukController extends Controller
     // Menampilkan form tambah data penduduk
     public function create()
     {
-        return view('admin.penduduk.create');
+        $rw = RW::all();
+        $rt = RT::all();
+        return view('admin.penduduk.create', compact('rw', 'rt'));
     }
 
     // Menyimpan data penduduk ke database
     public function store(Request $request)
     {
-        $request->validate([
-            'FNIK' => 'required|unique:tb_penduduk,FNIK',
-            'FNO_KK' => 'required',
-            'FNAMA' => 'required',
-            'FTMP_LAHIR' => 'required',
-            'FTGL_LAHIR' => 'required|date',
-            'FKEL' => 'required',
-            'FAGAMA' => 'required',
-            'FALAMAT' => 'required',
-            'FPENDIDIKAN' => 'required',
-            'FPEKERJAAN' => 'required',
-            'FSTATUS' => 'required',
-            'FSTATUS_KEL' => 'required',
-            'FKEWARGANEGARAAN' => 'required',
-            'FNAMA_AYAH' => 'required',
-            'FNAMA_IBU' => 'required',
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nik' => 'required|numeric|digits:16|unique:tb_penduduk,nik',
+            'no_kk' => 'required|numeric|digits:16',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'tempat_lahir' => 'required|string|max:100',
+            'tanggal_lahir' => 'required|date|before:today',
+            'agama' => 'required|string|max:50',
+            'pekerjaan' => 'required|string|max:100',
+            'status_perkawinan' => 'required|string|max:100',
+            'alamat' => 'required|string|max:255',
+            'rw_id' => 'required|exists:tb_rw,id',
+            'rt_id' => 'required|exists:tb_rt,id',
         ]);
 
-        DB::table('tb_penduduk')->insert($request->except('_token'));
 
-        return redirect()->route('admin.penduduk.index')->with('success', 'Data penduduk berhasil ditambahkan!');
+        Penduduk::create($validated);
+
+        return redirect()->route('penduduk.index')->with('toast_success', 'Data penduduk berhasil ditambahkan!');
     }
 
     // Menampilkan form edit data penduduk
-    public function edit($FNIK)
+    public function edit(Penduduk $penduduk)
     {
-        $penduduk = DB::table('tb_penduduk')->where('FNIK', $FNIK)->first();
-        return view('admin.penduduk.edit', compact('penduduk'));
+        $rw = RW::all();
+        $rt = RT::all();
+        return view('admin.penduduk.edit', compact('penduduk', 'rw', 'rt'));
     }
 
     // Mengupdate data penduduk
-    public function update(Request $request, $FNIK)
+    public function update(Request $request, Penduduk $penduduk)
     {
-        $request->validate([
-            'FNIK' => 'required|unique:tb_penduduk,FNIK,' . $FNIK . ',FNIK',
-            'FNO_KK' => 'required',
-            'FNAMA' => 'required',
-            'FTMP_LAHIR' => 'required',
-            'FTGL_LAHIR' => 'required|date',
-            'FKEL' => 'required',
-            'FAGAMA' => 'required',
-            'FALAMAT' => 'required',
-            'FPENDIDIKAN' => 'required',
-            'FPEKERJAAN' => 'required',
-            'FSTATUS' => 'required',
-            'FSTATUS_KEL' => 'required',
-            'FKEWARGANEGARAAN' => 'required',
-            'FNAMA_AYAH' => 'required',
-            'FNAMA_IBU' => 'required',
+
+        $request->merge([
+            'tanggal_lahir' => \Carbon\Carbon::createFromFormat('d-m-Y', $request->tanggal_lahir)->format('Y-m-d'),
         ]);
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nik' => [
+                'required',
+                'numeric',
+                'digits_between:8,20',
+                Rule::unique('tb_penduduk', 'nik')->ignore($penduduk->id), // ini kuncinya
+            ],
+            'no_kk' => 'required|numeric|digits:16',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'tempat_lahir' => 'required|string|max:100',
+            'tanggal_lahir' => 'required|date|before:today',
+            'agama' => 'required|string|max:50',
+            'pekerjaan' => 'required|string|max:100',
+            'status_perkawinan' => 'required|string|max:100',
+            'alamat' => 'required|string|max:255',
+            'rw_id' => 'required|exists:tb_rw,id',
+            'rt_id' => 'required|exists:tb_rt,id',
+        ]);
+        $penduduk->update($validated);
 
-        DB::table('tb_penduduk')->where('FNIK', $FNIK)->update($request->except('_token', '_method'));
-
-        return redirect()->route('admin.penduduk.index')->with('success', 'Data penduduk berhasil diperbarui!');
+        return redirect()->route('penduduk.index')->with('toast_success', 'Data penduduk berhasil diperbarui!');
     }
     // Menghapus data penduduk
-    public function destroy($FNIK)
+    public function destroy(Penduduk $penduduk)
     {
-        DB::table('tb_penduduk')->where('FNIK', $FNIK)->delete();
+        $penduduk->delete();
 
-        return redirect()->route('admin.penduduk.index')->with('success', 'Data penduduk berhasil dihapus!');
+        return redirect()->route('penduduk.index')->with('toast_success', 'Data penduduk berhasil dihapus!');
     }
 
     // Menampilkan detail data penduduk

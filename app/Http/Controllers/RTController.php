@@ -59,9 +59,8 @@ class RTController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(RT $rt)
     {
-        $rt = RT::findOrFail($id);
         $rw = RW::orderBy('id', 'asc')->get();
         return view('admin.rt.edit', compact('rt', 'rw'));
     }
@@ -69,14 +68,14 @@ class RTController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, RT $rt)
     {
         $request->validate([
             'nama_rt' => 'required',
             'rw_id' => 'required'
         ]);
 
-        RT::where('id', $id)->update([
+        $rt->update([
             'nama_rt' => $request->nama_rt,
             'rw_id' => $request->rw_id,
         ]);
@@ -86,9 +85,9 @@ class RTController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(RT $rt)
     {
-        RT::destroy($id);
+        $rt->delete();
         return redirect()->route('rt.index')->with('toast_success', 'Data Berhasil Dihapus');
     }
 }

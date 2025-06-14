@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Data Penduduk', 'activeMenu' => 'penduduk', 'icon' => 'fa6-solid:users-line'])
+@extends('layouts.app', ['title' => 'Data RT', 'activeMenu' => 'penduduk', 'icon' => 'fa6-solid:users-line'])
 
 @section('content')
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 mt-6">
@@ -9,52 +9,58 @@
 
 
 
+                    {{-- <h2 class="text-xl font-semibold mb-4 mt-10 text-gray-700">Data RT</h2> --}}
                     <div class="p-6 rounded shadow">
                         <a href="{{ route('rt.create') }}"
-                            class=" bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-1 rounded transition duration-300 flex items-center gap-2 w-[155px]">
+                            class="mb-5 bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-1 rounded transition duration-300 flex items-center gap-2 w-[155px]">
                             <iconify-icon icon="fa6-solid:plus" class="icon"></iconify-icon>
                             <span>Tambah Data</span>
                         </a>
 
-                        <h2 class="text-xl font-semibold mb-4 mt-10 text-gray-700">Data RT</h2>
-                        <table class="table-auto w-full border border-gray-300 text-sm" id="table-surat">
-                            <thead class="bg-gray-200 text-left">
-                                <tr>
-                                    <th class="border px-4 py-2">No</th>
-                                    <th class="border px-4 py-2">RT</th>
-                                    <th class="border px-4 py-2">RW</th>
-                                    <th class="border px-4 py-2">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-                                @foreach ($rt as $item)
+                        <div class="table-responsive">
+                            <table class="table striped-table" id="table-surat">
+                                <thead class="bg-gray-200 text-left">
                                     <tr>
-                                        <td class="border px-4 py-2">{{ $loop->iteration }}</td>
-                                        <td class="border px-4 py-2">{{ $item->nama_rt }}</td>
-                                        <td class="border px-4 py-2">{{ $item->rw->nama_rw }}</td>
-                                        <td class="border px-4 py-2">
-                                            <a href="{{ route('rt.edit', $item->id) }}"
-                                                class="w-8 h-8 bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 rounded-full inline-flex items-center justify-center">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            {{-- <button onclick="openDeleteModal('{{ route('rt.destroy', $item->id) }}')"
-                                                data-modal-target="global-delete-modal"
-                                                data-modal-toggle="global-delete-modal"
-                                                class="w-8 h-8 bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 rounded-full inline-flex items-center justify-center">
-                                                <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
-                                            </button> --}}
-                                            <a href="javascript:void(0)" data-modal-target="global-delete-modal"
-                                                data-modal-toggle="global-delete-modal"
-                                                class="w-8 h-8 bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 rounded-full inline-flex items-center justify-center">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
+                                        <th
+                                            class="!bg-white dark:!bg-neutral-700 border-b border-neutral-200 dark:border-neutral-600">
+                                            No</th>
+                                        <th
+                                            class="!bg-white dark:!bg-neutral-700 border-b border-neutral-200 dark:border-neutral-600">
+                                            RT</th>
+                                        <th
+                                            class="!bg-white dark:!bg-neutral-700 border-b border-neutral-200 dark:border-neutral-600">
+                                            RW</th>
+                                        <th
+                                            class="!bg-white dark:!bg-neutral-700 border-b border-neutral-200 dark:border-neutral-600">
+                                            Aksi</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
 
+                                    @foreach ($rt as $item)
+                                        <tr class="odd:bg-neutral-100 dark:odd:bg-neutral-600">
+                                            <td class="border px-4 py-2">{{ $loop->iteration }}</td>
+                                            <td class="border px-4 py-2">{{ $item->nama_rt }}</td>
+                                            <td class="border px-4 py-2">{{ $item->rw->nama_rw }}</td>
+                                            <td class="border px-4 py-2">
+                                                <a href="{{ route('rt.edit', $item->hashid) }}"
+                                                    class="w-8 h-8 bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 rounded-full inline-flex items-center justify-center">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <button data-delete-url ="{{ route('rt.destroy', $item->hashid) }}"
+                                                    data-modal-target="global-delete-modal"
+                                                    data-modal-toggle="global-delete-modal"
+                                                    class="w-8 h-8 bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 rounded-full inline-flex items-center justify-center">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>
@@ -63,7 +69,7 @@
     </div>
 
     <div id="global-delete-modal" tabindex="-1"
-        class="hidden fixed top-0 left-0 right-0 z-50 justify-center items-center w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <button type="button"
@@ -104,24 +110,18 @@
     <script>
         $(document).ready(function() {
             let table = null
-            table = $('#table-surat').DataTable()
-        })
+            table = $('#table-surat').DataTable({
 
-        function openDeleteModal(deleteUrl) {
+            })
+        })
+        $(document).on('click', '[data-delete-url]', function(e) {
+            e.preventDefault();
+            const deleteUrl = $(this).data('delete-url');
             document.getElementById('delete-form').setAttribute('action', deleteUrl);
-        }
-        // if (document.getElementById("table-surat") && typeof simpleDatatables.DataTable !== 'undefined') {
-        //     let table = null
-        //     const dataTableOptions = {
-        //         columns: [{
-        //                 select: [0, 3],
-        //                 sortable: false,
-        //                 searchable: false
-        //             } // Disable sorting on the first column (index 0 and 6)
-        //         ],
-        //     }
-        //     table = new simpleDatatables.DataTable("#table-surat", dataTableOptions);
-        //     console.log(table)
-        // }
+
+
+            const modal = FlowbiteInstances.getInstance('Modal', 'global-delete-modal');
+            modal.show();
+        });
     </script>
 @endsection
