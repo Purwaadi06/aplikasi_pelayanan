@@ -36,6 +36,9 @@ class PendudukController extends Controller
     // Menyimpan data penduduk ke database
     public function store(Request $request)
     {
+        $request->merge([
+            'tanggal_lahir' => \Carbon\Carbon::createFromFormat('d-m-Y', $request->tanggal_lahir)->format('Y-m-d'),
+        ]);
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'nik' => 'required|numeric|digits:16|unique:tb_penduduk,nik',
@@ -104,10 +107,10 @@ class PendudukController extends Controller
     }
 
     // Menampilkan detail data penduduk
-    public function show($FNIK)
+    public function show(Penduduk $penduduk)
     {
-        $penduduk = DB::table('tb_penduduk')->where('FNIK', $FNIK)->first();
-
+        // $penduduk->load('rt.rw');
+        // dd($penduduk);
         if (!$penduduk) {
             return redirect()->route('admin.penduduk.index')->with('error', 'Data tidak ditemukan.');
         }

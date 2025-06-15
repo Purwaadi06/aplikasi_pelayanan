@@ -23,13 +23,14 @@ class Penduduk extends Model
         'tanggal_lahir',
         'agama',
         'pekerjaan',
-
         'status_perkawinan',
         'alamat',
         'rw_id',
         'rt_id'
     ];
-
+    protected $casts = [
+        'tanggal_lahir' => 'date'
+    ];
     public function rt()
     {
         return $this->belongsTo(RT::class, 'rt_id', 'id');

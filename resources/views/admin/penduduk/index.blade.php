@@ -52,7 +52,10 @@
                                             {{ $item->rt->rw->nama_rw ?? '' }}</td>
 
                                         <td class="border px-4 py-2">
-
+                                            <a href="{{ route('penduduk.show', $item->hashid) }}"
+                                                class="w-8 h-8 bg-info-100 dark:bg-info-600/25 text-info-600 dark:text-info-400 rounded-full inline-flex items-center justify-center">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
                                             <a href="{{ route('penduduk.edit', $item->hashid) }}"
                                                 class="w-8 h-8 bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 rounded-full inline-flex items-center justify-center">
                                                 <i class="fa-solid fa-pen-to-square"></i>

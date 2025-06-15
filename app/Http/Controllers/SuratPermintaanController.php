@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penduduk;
+use App\Models\TipeSurat;
 use Illuminate\Http\Request;
 use App\Models\SuratPermintaan;
-use App\Models\Penduduk;
 use Illuminate\Support\Facades\Auth;
 
 class SuratPermintaanController extends Controller
@@ -12,15 +13,22 @@ class SuratPermintaanController extends Controller
     // Tampilkan semua data surat permintaan
     public function index()
     {
-        // $data = SuratPermintaan::with('penduduk')->get();
-        return view('admin.surat_permintaan.index');
+        $pengajuanSurat = SuratPermintaan::with('penduduk.rt.rw')->get();
+        return view('admin.surat_permintaan.index', compact('pengajuanSurat'));
     }
 
     // Form create
     public function create()
     {
-        $penduduks = Penduduk::all(); // Ambil semua data dari tabel tb_penduduk
-        return view('admin.surat_permintaan.create', compact('penduduks'));
+        $penduduk = null;
+        if (auth()->user()->role == 'admin') {
+
+            $penduduk = Penduduk::whereHas('rt.rw')->get();
+        } else {
+            $penduduk = Penduduk::whereHas('rt.rw')->where('rw_id', auth()->user()->rw_id)->get();
+        }
+        $tipeSurat = TipeSurat::all();
+        return view('admin.surat_permintaan.create', compact('penduduk', 'tipeSurat'));
     }
 
     // Simpan data baru

@@ -7,11 +7,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ $title }} - Sistem Pelayanan Surat Kelurahan Cikundul</title>
-    <link rel="icon" type="image/png" href="{{ asset('template') }}/assets/images/favicon.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo_cikundul.png') }}" sizes="16x16" />
     <!-- google fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap"
         rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- remix icon font css  -->
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/remixicon.css" />
     <!-- Apex Chart css -->
@@ -31,6 +32,11 @@
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/lib/jquery-jvectormap-2.0.5.css" />
     <!-- Popup css -->
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/lib/magnific-popup.css" />
+    <!-- Filepond -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet" />
+
     <!-- Slick Slider css -->
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/lib/slick.css" />
     <!-- prism css -->
@@ -44,6 +50,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('template') }}/assets/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+
+    </style>
     @yield('css')
 </head>
 

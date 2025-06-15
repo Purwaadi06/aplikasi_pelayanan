@@ -64,7 +64,7 @@
 
 
                     <div class="p-6 rounded shadow text-center">
-                        @if (auth()->user()->role == 'dmin')
+                        @if (auth()->user()->role == 'admin')
                             <img src="/assets/logo_cikundul.png" alt="Logo Kelurahan" class="mb-4 mx-auto"
                                 style="width: 9.5rem">
                             <h2 class="text-xl font-bold mb-2">Halo, Administrator</h2>

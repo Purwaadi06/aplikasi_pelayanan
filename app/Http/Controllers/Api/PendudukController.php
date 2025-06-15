@@ -23,7 +23,11 @@ class PendudukController extends Controller
             }
         }
 
-        $result = $data->get();
+        $result = $data->get()->map(function ($query) {
+            $query->tanggal_lahir_format = $query->tanggal_lahir->translatedFormat('d F Y');
+
+            return $query;
+        });
 
         return response()->json([
             'isSuccess' => true,

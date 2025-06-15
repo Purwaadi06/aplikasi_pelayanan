@@ -54,7 +54,7 @@
                     <li>
                         <a href="{{ route('surat_permintaan.index') }}"><i
                                 class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            Permintaan Surat</a>
+                            Pengajuan Surat</a>
                     </li>
                     @if (auth()->user()->role == 'admin')
                         <li>

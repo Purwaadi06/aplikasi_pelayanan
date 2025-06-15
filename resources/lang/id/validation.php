@@ -114,6 +114,9 @@ return [
     'uploaded' => 'Kolom :attribute gagal diunggah.',
     'url' => 'Format kolom :attribute tidak valid.',
     'uuid' => 'Kolom :attribute harus berupa UUID yang valid.',
+    'auth' => [
+        'failed' => "Email atau Password Salah"
+    ],
 
     /*
     |--------------------------------------------------------------------------
